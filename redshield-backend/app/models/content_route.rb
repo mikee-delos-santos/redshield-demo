@@ -1,0 +1,2 @@
+class ContentRoute < ApplicationRecord
+end
