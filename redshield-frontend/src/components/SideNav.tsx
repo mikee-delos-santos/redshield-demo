@@ -1,6 +1,7 @@
 import { FaSearch } from "react-icons/fa";
 import { HiServer } from "react-icons/hi";
 import { MdFileDownload } from "react-icons/md";
+import { PiNetworkFill, PiShieldCheckeredFill } from "react-icons/pi";
 import { TbArrowMergeAltRight, TbArrowsDownUp, TbLockOpenOff, TbLockPlus } from "react-icons/tb";
 
 function SideNav() {
@@ -15,7 +16,8 @@ function SideNav() {
         <TbArrowsDownUp />
         <TbLockOpenOff />
         <HiServer />
-
+        <PiNetworkFill />
+        <PiShieldCheckeredFill />
       </div>
 
     </div>
