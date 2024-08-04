@@ -1,4 +1,5 @@
-type ContentRoute = {
+type ContentRouteType = {
+  id: number,
   name: string,
   serviceReference: string,
   hostNames: string,
@@ -6,3 +7,5 @@ type ContentRoute = {
   spec: string,
   locked: boolean
 }
+
+export default ContentRouteType
