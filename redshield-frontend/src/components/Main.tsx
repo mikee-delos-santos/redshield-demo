@@ -30,7 +30,7 @@ function Main() {
   ]
 
   const contentRoutes = testData.map(e => {
-    return <ContentRoute contentRoute={e}></ContentRoute>
+    return <ContentRoute key={e.id} contentRoute={e}></ContentRoute>
   })
 
   return <>
