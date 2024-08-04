@@ -40,8 +40,9 @@ function Main() {
               <div>Spec</div>
               <div>Spec</div>
               <div><IoMdLock/></div>
-
             </header>
+
+            
 
           </div>
         </article>
