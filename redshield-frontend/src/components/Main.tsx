@@ -2,6 +2,7 @@ import { useState } from "react";
 import FilterType from "../types/FilterType";
 import Button from "./Button";
 import { GoFilter } from "react-icons/go";
+import { IoMdLock } from "react-icons/io";
 
 function Main() {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ungrouped')
@@ -29,9 +30,21 @@ function Main() {
       </section>
 
       <section>
-        
+        <article className="text-sm">
+          <div className="bg-white rounded drop-shadow-lg w-full p-5">
+            <header className="flex justify-between text-center">
+              <div className="text-center">Name</div>
+              <div>Service reference</div>
+              <div>Host names</div>
+              <div>PoPs</div>
+              <div>Spec</div>
+              <div>Spec</div>
+              <div><IoMdLock/></div>
 
+            </header>
 
+          </div>
+        </article>
       </section>
     </main>
   </>
