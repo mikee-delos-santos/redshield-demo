@@ -4,6 +4,7 @@ import { FiChevronRight } from "react-icons/fi"
 import './ContentRoute.css';
 import VirtualServers from "./VirtualServers";
 import TierOne from "./TierOne";
+import OriginServerGroup from "./OriginServerGroup";
 
 type ContentRouteProps = {
   contentRoute: ContentRouteType
@@ -25,13 +26,10 @@ function ContentRoute(props: ContentRouteProps) {
       <div>{props.contentRoute.locked ? 'Yes' : 'No'}</div>
     </div>
 
-    <section className={`${expanded ? "visible" : "hidden"}`}>
+    <section className={`${expanded ? "visible" : "hidden"} pb-4`}>
       <VirtualServers contentRouteId={props.contentRoute.id}/>
       <TierOne contentRouteId={props.contentRoute.id}/>
-      <article>
-        <div className="border border-slate-400 text-slate-400 rounded px-2 w-fit mb-3">Origin server roup</div>
-      </article>
-
+      <OriginServerGroup contentRouteId={props.contentRoute.id}/>
     </section>
     <hr className="mx-[-20px]"/>
   </>

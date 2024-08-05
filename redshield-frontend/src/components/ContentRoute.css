@@ -1,9 +1,3 @@
 .rotate-down {
-  /* animation: 1s 1 alternate spindown; */
   rotate: 90deg;
-}
-
-.rotate-up {
-  /* animation: 1s 1 alternate spinup; */
-  rotate: 180deg;
 }
