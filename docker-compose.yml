@@ -20,6 +20,7 @@ services:
     build:
       context: ./redshield-backend
     environment:
+      DATABASE_HOST: db
       POSTGRES_USER: redshield
       POSTGRES_PASSWORD: redshield-is-awesome
       RAILS_MASTER_KEY: b59980a7398fc151c42059279af474ff
