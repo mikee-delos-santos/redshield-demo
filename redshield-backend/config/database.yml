@@ -15,9 +15,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: 0.0.0.0
-  username: redshield
-  password: redshield-is-awesome
+  host: db
+  username: <%= ENV["POSTGRES_USER"] %>
+  password: <%= ENV["POSTGRES_PASSWORD"] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -82,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: redshield_backend_production
-  username: redshield_backend
-  password: <%= ENV["REDSHIELD_BACKEND_DATABASE_PASSWORD"] %>
+  database: redshield_backend_development # This should be prod IRL

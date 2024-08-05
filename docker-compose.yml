@@ -1,10 +1,8 @@
 version: '3.9'
 services:
   db:
-    container_name: db
     build:
       context: ./db
-      target: db
     environment:
       POSTGRES_USER: redshield
       POSTGRES_PASSWORD: redshield-is-awesome
@@ -12,4 +10,14 @@ services:
     ports:
       - 5432:5432
   # frontend:
-  # backend:
+  backend:
+    build:
+      context: ./redshield-backend
+    environment:
+      POSTGRES_USER: redshield
+      POSTGRES_PASSWORD: redshield-is-awesome
+      RAILS_MASTER_KEY: b59980a7398fc151c42059279af474ff
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
