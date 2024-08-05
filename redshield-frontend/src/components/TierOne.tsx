@@ -1,8 +1,4 @@
-import ContentRoutePropType from "../types/ContentRoutePropType";
-
-function TierOne(props: ContentRoutePropType) {
-
-  
+function TierOne() {
   return <article className="py-4">
     <div className="border border-slate-400 text-slate-400 rounded px-2 w-fit mb-3">Tier1</div>
     <header className="grid grid-cols-6 text-slate-300 text-xs">

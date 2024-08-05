@@ -9,7 +9,13 @@ services:
       POSTGRES_DB: redshield_backend_development
     ports:
       - 5432:5432
-  # frontend:
+  frontend:
+    build:
+      context: ./redshield-frontend
+    ports:
+      - 5172:3000
+    depends_on:
+      - db
   backend:
     build:
       context: ./redshield-backend

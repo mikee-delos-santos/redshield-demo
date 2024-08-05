@@ -2,7 +2,7 @@ import { useState } from "react";
 import FilterType from "../types/FilterType";
 import Button from "./Button";
 import { GoFilter } from "react-icons/go";
-import { IoMdInformationCircle, IoMdLock } from "react-icons/io";
+import { IoMdInformationCircle } from "react-icons/io";
 import { FiPlus } from "react-icons/fi";
 import { useQuery } from "@tanstack/react-query";
 import ContentRoutes from "./ContentRoutes";

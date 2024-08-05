@@ -34,7 +34,7 @@ function ContentRoute(props: ContentRouteProps) {
 
     <section className={`${expanded ? "visible" : "hidden"} pb-4`}>
       <VirtualServers contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
-      <TierOne contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
+      <TierOne/>
       <OriginServerGroup contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
     </section>
     <hr className="mx-[-20px]"/>
