@@ -4,7 +4,6 @@ import ActionButton from "./ActionButton"
 import OriginServerGroupType from "../types/OriginServerGroupType"
 
 function OriginServerGroup(props: ContentRoutePropType) {
-
   const testData: Array<OriginServerGroupType> = [{
     id: 1,
     address: "52.9.238.76",
