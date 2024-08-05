@@ -3,7 +3,7 @@ class ContentRoutesController < ApplicationController
 
   # GET /content_routes
   def index
-    @content_routes = ContentRoute.all
+    @content_routes = ContentRoute.where(client_id: content_route_q_params[:client_id]).order("id ASC")
 
     render json: @content_routes
   end
@@ -47,5 +47,9 @@ class ContentRoutesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def content_route_params
       params.require(:content_route).permit(:name, :service_reference, :host_names, :pops, :spec, :locked)
+    end
+
+    def content_route_q_params
+      params.permit(:client_id)
     end
 end

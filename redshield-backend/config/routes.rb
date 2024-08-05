@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :origin_server_groups
   resources :dns
   resources :tier_ones
   resources :virtual_servers

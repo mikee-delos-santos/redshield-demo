@@ -3,7 +3,7 @@ class DnsController < ApplicationController
 
   # GET /dns
   def index
-    @dns = Dn.all
+    @dns = Dn.where(client_id: dn_params[:client_id], origin_server_group_id: dn_params[:origin_server_group_id])
 
     render json: @dns
   end
@@ -46,6 +46,6 @@ class DnsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def dn_params
-      params.require(:dn).permit(:client_id, :origin_server_group_id, :name, :type, :ip_address)
+      params.permit(:client_id, :origin_server_group_id, :name, :type, :ip_address)
     end
 end
