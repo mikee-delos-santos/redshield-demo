@@ -126,4 +126,4 @@ INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_ty
 INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (3,1,'OHI1','{11144}','10.112.29.40','RS-2024-1010-CR21_redir_vs','HTTPS Redirect','ALB',now(),now(),1);
 INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (4,1,'OHI1','{11145}','10.112.29.40','RS-2024-1010-CR21_vs','Standard (HTTPS)','ALB',now(),now(),1);
 
-INSERT INTO dns (id,client_id,origin_server_group_id,name,type,ip_address,created_at,updated_at) VALUES (1,1,1,'mfa.redshield.co','A','52.223.44.65', now(), now())
+INSERT INTO dns (id,client_id,origin_server_group_id,name,type,ip_address,created_at,updated_at) VALUES (1,1,1,'mfa.redshield.co','A','52.223.44.65', now(), now());
