@@ -6,9 +6,24 @@ import { IoMdInformationCircle, IoMdLock } from "react-icons/io";
 import ContentRouteType from "../types/ContentRouteType";
 import ContentRoute from "./ContentRoute";
 import { FiPlus } from "react-icons/fi";
+import { useQuery } from "@tanstack/react-query";
 
 function Main() {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ungrouped')
+  const CLIENT_ID = 1; // Hardcoded for now
+
+  const { isPending, error, data } = useQuery({
+    queryKey: [],
+    queryFn: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/clients/${CLIENT_ID}`,
+      )
+      return await response.json()
+    },
+  })
+
+  if (isPending) return <main className="ml-14">Loading...</main>
+  if (error) return <main className="ml-14">{'An error has occurred: ' + error.message}</main>
 
   const testData: Array<ContentRouteType> = [{
     id: 1,
@@ -34,9 +49,20 @@ function Main() {
     return <ContentRoute key={e.id} contentRoute={e}></ContentRoute>
   })
 
+  const getCountry = (countryCode:string) => {
+    switch(countryCode) {
+      case "US":
+        return '🇺🇸'
+      case "JP":
+        return '🇯🇵'
+      default:
+        return '🇺🇸'
+    }
+  }
+
   return <>
     <main className="bg-slate-100 ml-10 px-6 py-9 h-screen">
-      <h2 className="text-3xl">Deal-A-Day 🇺🇸</h2>
+      <h2 className="text-3xl">{data.name} {getCountry(data.country)}</h2>
       <div className="text-xs my-4">9 content routes</div>
 
       <section className="my-5 flex justify-between">
