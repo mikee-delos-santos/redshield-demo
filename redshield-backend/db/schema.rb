@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_05_075544) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_05_081833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,12 +52,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_075544) do
     t.string "osg_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "dn_id", null: false
     t.string "address"
     t.integer "port"
     t.index ["client_id"], name: "index_origin_server_groups_on_client_id"
     t.index ["content_route_id"], name: "index_origin_server_groups_on_content_route_id"
-    t.index ["dn_id"], name: "index_origin_server_groups_on_dn_id"
   end
 
   create_table "tier_ones", force: :cascade do |t|
@@ -94,7 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_05_075544) do
   add_foreign_key "dns", "origin_server_groups"
   add_foreign_key "origin_server_groups", "clients"
   add_foreign_key "origin_server_groups", "content_routes"
-  add_foreign_key "origin_server_groups", "dns"
   add_foreign_key "tier_ones", "clients"
   add_foreign_key "tier_ones", "content_routes"
   add_foreign_key "virtual_servers", "clients"

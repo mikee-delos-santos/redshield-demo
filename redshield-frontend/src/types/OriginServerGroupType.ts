@@ -1,11 +1,8 @@
 type OriginServerGroupType = {
   id: number,
+  osgName: string,
   address: string,
-  port: string,
-  name: string,
-  type: string,
-  ip: string,
-  monitorType: string
+  port: string
 }
 
 export default OriginServerGroupType
