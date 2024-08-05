@@ -1,12 +1,14 @@
 version: '3.9'
 services:
   db:
-    image: postgres
-    restart: always
-    shm_size: 128mb
+    container_name: db
+    build:
+      context: ./db
+      target: db
     environment:
-      POSTGRES_USER: redshield # DEV ENV PW
-      POSTGRES_PASSWORD: dev_pw_redshield-is-awesome # DEV ENV PW
+      POSTGRES_USER: redshield
+      POSTGRES_PASSWORD: redshield-is-awesome
+      POSTGRES_DB: redshield_backend_development
     ports:
       - 5432:5432
   # frontend:
