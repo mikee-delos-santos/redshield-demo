@@ -1,29 +1,24 @@
+import { useQuery } from "@tanstack/react-query"
 import ContentRoutePropType from "../types/ContentRoutePropType"
 import VirtualServerType from "../types/VirtualServerType"
+import camelCaseKeys from "../mappers/camelCaseKeys"
 
 function VirtualServers(props: ContentRoutePropType) {
-
-  const testVs: Array<VirtualServerType> = [{
-    id: 1,
-    cluster: "OHI1",
-    ports: "11144",
-    ip: "10.176.21.40",
-    vsName: "RS-2024-1010-CR21_redir_vs",
-    terminatorType: "HTTPS Redirect",
-    trafficType: "ALB",
+  const {isPending, error, data: virtualServerData} = useQuery({
+    queryKey: ['virtualServers', props.contentRouteId],
+    queryFn: async () => {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/virtual_servers?client_id=${props.clientId}&content_route_id=${props.contentRouteId}`,
+      )
+      return await response.json().then(camelCaseKeys)
     },
-    {
-      id: 2,
-      cluster: "OHI1",
-      ports: "11145",
-      ip: "10.176.21.40",
-      vsName: "RS-2024-1010-CR21_vs",
-      terminatorType: "Standard (HTTPS)",
-      trafficType: "ALB"
-    }
-  ]
+  })
 
-  const virtualServers = testVs.map((e) => 
+  if (isPending) return <main className="ml-14">Loading...</main>
+  if (error) return <main className="ml-14">{'An error has occurred: ' + error.message}</main>
+
+
+  const virtualServers = virtualServerData.map((e: VirtualServerType) => 
      <div key={e.id} className="grid grid-cols-6 py-2">
       <div>{e.cluster}</div>
       <div>{e.ports}</div>

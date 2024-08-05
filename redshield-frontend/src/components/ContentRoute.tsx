@@ -9,7 +9,8 @@ import ActionButton from "./ActionButton";
 import { HiDotsVertical } from "react-icons/hi";
 
 type ContentRouteProps = {
-  contentRoute: ContentRouteType
+  contentRoute: ContentRouteType,
+  clientId: number
 }
 
 function ContentRoute(props: ContentRouteProps) {
@@ -32,9 +33,9 @@ function ContentRoute(props: ContentRouteProps) {
     </div>
 
     <section className={`${expanded ? "visible" : "hidden"} pb-4`}>
-      <VirtualServers contentRouteId={props.contentRoute.id}/>
-      <TierOne contentRouteId={props.contentRoute.id}/>
-      <OriginServerGroup contentRouteId={props.contentRoute.id}/>
+      <VirtualServers contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
+      <TierOne contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
+      <OriginServerGroup contentRouteId={props.contentRoute.id} clientId={props.clientId}/>
     </section>
     <hr className="mx-[-20px]"/>
   </>

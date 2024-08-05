@@ -1,5 +1,6 @@
 type ContentRoutePropType = {
-  contentRouteId: number
+  contentRouteId: number,
+  clientId: number
 }
 
 export default ContentRoutePropType

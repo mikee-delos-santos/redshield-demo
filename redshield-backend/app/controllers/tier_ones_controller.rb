@@ -3,7 +3,7 @@ class TierOnesController < ApplicationController
 
   # GET /tier_ones
   def index
-    @tier_ones = TierOne.all
+    @tier_ones = TierOne.where(client_id: virtual_server_params[:client_id], content_route_id: virtual_server_params[:content_route_id])
 
     render json: @tier_ones
   end
@@ -46,6 +46,6 @@ class TierOnesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tier_one_params
-      params.require(:tier_one).permit(:name, :cluster, :ip, :port, :terminator, :traffic_type, :client_id)
+      params.permit(:name, :cluster, :ip, :port, :terminator, :traffic_type, :client_id, :content_route_id)
     end
 end

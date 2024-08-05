@@ -3,7 +3,7 @@ class VirtualServersController < ApplicationController
 
   # GET /virtual_servers
   def index
-    @virtual_servers = VirtualServer.all
+    @virtual_servers = VirtualServer.where(client_id: virtual_server_params[:client_id], content_route_id: virtual_server_params[:content_route_id])
 
     render json: @virtual_servers
   end
@@ -46,6 +46,6 @@ class VirtualServersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def virtual_server_params
-      params.require(:virtual_server).permit(:client_id, :cluster, :ports, :ip, :vs_name, :terminator_typ, :traffic_type)
+      params.permit(:client_id, :cluster, :ports, :ip, :vs_name, :terminator_typ, :traffic_type, :content_route_id)
     end
 end

@@ -8,29 +8,9 @@ type ContentRoutePropType = {
   clientId: number
 }
 
-const testData: Array<ContentRouteType> = [{
-  id: 1,
-  name: "RS-2024-1010-CR21",
-  serviceReference: "RS-2024-1010",
-  hostNames: "mfa.redshield.co",
-  pops: "OHI1, ORE1",
-  spec: "1.0",
-  locked: true
-  },
-  {
-    id: 2,
-    name: "RS-2024-1010-CR27",
-    serviceReference: "RS-2024-1010",
-    hostNames: "redcoer.dev.0-days.net",
-    pops: "",
-    spec: "1.0",
-    locked: false
-  }
-]
-
 function ContentRoutes(props: ContentRoutePropType) {
   const {isPending, error, data: contentRouteQuery} = useQuery({
-    queryKey: ['contentRoute'],
+    queryKey: ['contentRoute', 'all'],
     queryFn: async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/content_routes?client_id=${props.clientId}`,
@@ -43,7 +23,7 @@ function ContentRoutes(props: ContentRoutePropType) {
   if (error) return <main className="ml-14">{'An error has occurred: ' + error.message}</main>
 
   const contentRoutes = contentRouteQuery.map( (e: ContentRouteType) => {
-    return <ContentRoute key={e.id} contentRoute={e}></ContentRoute>
+    return <ContentRoute key={e.id} contentRoute={e} clientId={props.clientId}></ContentRoute>
   })
   
   return <section>
