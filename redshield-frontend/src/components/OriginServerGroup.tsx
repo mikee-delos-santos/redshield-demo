@@ -1,4 +1,4 @@
-import { FaCirclePlus } from "react-icons/fa6"
+import { FaCirclePlus, FaPen, FaTrash } from "react-icons/fa6"
 import ContentRoutePropType from "../types/ContentRoutePropType"
 import ActionButton from "./ActionButton"
 import OriginServerGroupType from "../types/OriginServerGroupType"
@@ -21,7 +21,13 @@ function OriginServerGroup(props: ContentRoutePropType) {
     <div>{e.name}</div>
     <div>{e.type}</div>
     <div>{e.ip}</div>
-    <div>{e.monitorType}</div>
+    <div className="flex items-center justify-between">
+      <div>{e.monitorType}</div>
+      <div className="space-x-2">
+        <ActionButton icon={<FaPen />}></ActionButton>
+        <ActionButton icon={<FaTrash />}></ActionButton>
+      </div>
+    </div>
   </div>)
   return <article>
     <div className="grid grid-cols-3 items-center py-2">

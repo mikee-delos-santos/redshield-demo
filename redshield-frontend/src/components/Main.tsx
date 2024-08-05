@@ -2,9 +2,10 @@ import { useState } from "react";
 import FilterType from "../types/FilterType";
 import Button from "./Button";
 import { GoFilter } from "react-icons/go";
-import { IoMdLock } from "react-icons/io";
+import { IoMdInformationCircle, IoMdLock } from "react-icons/io";
 import ContentRouteType from "../types/ContentRouteType";
 import ContentRoute from "./ContentRoute";
+import { FiPlus } from "react-icons/fi";
 
 function Main() {
   const [selectedFilter, setSelectedFilter] = useState<FilterType>('ungrouped')
@@ -38,8 +39,8 @@ function Main() {
       <h2 className="text-3xl">Deal-A-Day 🇺🇸</h2>
       <div className="text-xs my-4">9 content routes</div>
 
-      <section className="my-5">
-        <div className="flex gap-2">
+      <section className="my-5 flex justify-between">
+        <div className="flex space-x-2">
           <div onClick={() => setSelectedFilter('vSG')}>
             <Button text={'Grouped by vSG'} icon={<GoFilter/>} selected={selectedFilter === 'vSG'} />
           </div>
@@ -52,6 +53,11 @@ function Main() {
           <div onClick={() => setSelectedFilter('ungrouped')}>
             <Button text={'Ungrouped'} icon={<GoFilter/>} selected={selectedFilter === 'ungrouped'}/>
           </div>
+        </div>
+        <div className="flex items-center space-x-3">
+          <IoMdInformationCircle />
+          <input type="text" className="text-xs p-2 bg-transparent border min-w-96" placeholder="Content route search"></input>
+          <Button icon={<FiPlus />} text="Add new app"/>
         </div>
       </section>
 
