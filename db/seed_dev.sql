@@ -98,3 +98,32 @@ CREATE TABLE dns (
 CREATE UNIQUE INDEX dns_pkey ON dns(id int8_ops);
 CREATE INDEX index_dns_on_client_id ON dns(client_id int8_ops);
 CREATE INDEX index_dns_on_origin_server_group_id ON dns(origin_server_group_id int8_ops);
+
+--- start seeding --
+INSERT INTO schema_migrations (version) VALUES (20240803144640);
+INSERT INTO schema_migrations (version) VALUES (20240803154404);
+INSERT INTO schema_migrations (version) VALUES (20240803155038);
+INSERT INTO schema_migrations (version) VALUES (20240803155812);
+INSERT INTO schema_migrations (version) VALUES (20240803160011);
+INSERT INTO schema_migrations (version) VALUES (20240803160838);
+INSERT INTO schema_migrations (version) VALUES (20240803162334);
+INSERT INTO schema_migrations (version) VALUES (20240805072542);
+INSERT INTO schema_migrations (version) VALUES (20240805074705);
+INSERT INTO schema_migrations (version) VALUES (20240805075544);
+INSERT INTO schema_migrations (version) VALUES (20240805081833);
+
+INSERT INTO clients (id, name, country, created_at, updated_at ) VALUES (1, 'Deal-A-Day', 'US', now(), now() );
+
+INSERT INTO content_routes (id,name,service_reference,host_names,pops,spec,locked,client_id,created_at,updated_at) VALUES (1,'RS-2024-1010-CR21','RS-2024-1010','{mfa.redshield.co}','OHI1,ORE1','1.0',TRUE,1, now(), now());
+INSERT INTO content_routes (id,name,service_reference,host_names,pops,spec,locked,client_id,created_at,updated_at) VALUES (2,'RS-2024-1010-CR27','RS-2024-1010','{redcore.dev.0-days.net}','OHI1,ORE1','1.0',FALSE,1, now(), now());
+
+INSERT INTO tier_ones (id,name,cluster,ip,port,terminator,traffic_type,client_id,created_at,updated_at,content_route_id) VALUES (1,'RS-2024-1010-T1-4','LOREM IPSUM','LOREM IPSUM',1114,'LOREM IPSUM','LOREM IPSUM',1,now(),now(),1);
+INSERT INTO origin_server_groups (id,client_id,content_route_id,osg_name,port,created_at,updated_at,address) VALUES (1,1,1,'RS-2024-1010-CR21_pool',80,now(), now(),'52.9.238.76');
+INSERT INTO origin_server_groups (id,client_id,content_route_id,osg_name,port,created_at,updated_at,address) VALUES (1,1,1,'RS-2024-1010-CR21_pool',411,now(), now(),'52.9.238.76');
+
+INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (1,1,'OHI1','{11144}','10.176.21.40','RS-2024-1010-CR21_redir_vs','HTTPS Redirect','ALB',now(),now(),1);
+INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (2,1,'OHI1','{11145}','10.176.21.40','RS-2024-1010-CR21_vs','Standard (HTTPS)','ALB',now(),now(),1);
+INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (3,1,'OHI1','{11144}','10.112.29.40','RS-2024-1010-CR21_redir_vs','HTTPS Redirect','ALB',now(),now(),1);
+INSERT INTO virtual_servers (id,client_id,cluster,ports,ip,vs_name,terminator_typ,traffic_type,created_at,updated_at,content_route_id) VALUES (4,1,'OHI1','{11145}','10.112.29.40','RS-2024-1010-CR21_vs','Standard (HTTPS)','ALB',now(),now(),1);
+
+INSERT INTO dns (id,client_id,origin_server_group_id,name,type,ip_address,created_at,updated_at) VALUES (1,1,1,'mfa.redshield.co','A','52.223.44.65', now(), now())
